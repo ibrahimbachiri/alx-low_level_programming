@@ -7,8 +7,12 @@
  */
 
 int main(void)
-{
-	_putchar("_putchar\n");
 
-	return (0);
+{
+
+
+	_putchar("putchar\n%c");
+
+	return write(1, &c, 1);
+
 }
