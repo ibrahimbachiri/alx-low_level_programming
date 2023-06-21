@@ -1,19 +1,13 @@
-#include <stdio.h>
 #include "main.h"
-
-
-int _putchar(int c)
-{
-  return putchar(c);
-}
+#include <stdio.h>
 
 void print_alphabet(void)
 {
-  int a;
+  char c;
 
-  for (a = 'a'; a <= 'z'; a++)
+  for (c = 'a'; c <= 'z'; c++)
   {
-    _putchar(a);
+    _putchar(c);
   }
 
   _putchar('\n');
