@@ -1,5 +1,11 @@
-#include <stdio.h>
+/*#include <stdio.h>*/
 #include "main.h"
+
+
+int _putchar(int c)
+{
+  return putchar(c);
+}
 
 void print_alphabet(void)
 {
@@ -12,14 +18,14 @@ void print_alphabet(void)
 
   _putchar('\n');
 }
-
+/*
 int _putchar(int c)
 {
   return putchar(c);
-}
+  }*/
 
-int main()
+/*int main()
 {
   print_alphabet();
   return (0);
-}
+  }*/
