@@ -1,7 +1,7 @@
 #include <stdio.h>
 #include "main.h"
 
-void Alpha(void)
+void print_alphabet(void)
 {
   int a;
 
@@ -18,8 +18,8 @@ int _putchar(int c)
   return putchar(c);
 }
 
-int main(void)
+int main()
 {
-  Alpha();
-  return 0;
+  print_alphabet();
+  return (0);
 }
