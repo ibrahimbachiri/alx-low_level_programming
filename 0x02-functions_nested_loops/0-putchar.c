@@ -1,14 +1,14 @@
 #include <stdio.h>
 
 /**
- * now
+ * main	- check the code
  *
- * return 0
+ * Return: Always 0. 
  */
 
-int main()
+int main(void)
 {
-	printf("_putchar\n");
+	putchar("_putchar\n");
 
 	return (0);
 }
