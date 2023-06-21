@@ -1,5 +1,5 @@
 #include <stdio.h>
-
+#include <main.h>
 /**
  * main	- check the code
  *
@@ -8,7 +8,7 @@
 
 int main(void)
 {
-	putchar("_putchar\n");
+	_putchar("_putchar\n");
 
 	return (0);
 }
