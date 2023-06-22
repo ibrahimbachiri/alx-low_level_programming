@@ -4,15 +4,27 @@
  * print_sign - Prints the sign of a number
  * @n: The number to check
  *
- * Return: '+' if n is greater than zero, '0' if n is zero, '-' if n is less than zero
- */
+ * Return: '+' if n is greater than zero, '0' if n is zero, '-' if n ('-');
+ */ 
+}
+
 int print_sign(int n)
 {
 	if (n > 0)
-		return ('+');
+	{
+		_putchar('+');
+		return 1;
+	}
 	else if (n == 0)
-		return ('0');
+	{
+		_putchar('0');
+		return 0;
+	}
 	else
-		return ('-');
+	{
+		_putchar('-');
+		return -1;
+	}
 }
+
 
