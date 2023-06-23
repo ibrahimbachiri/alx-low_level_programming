@@ -1,12 +1,12 @@
 #include <unistd.h>
-
-
-/**
- * _isupper - checks if a character is uppercase
- *
- * @c: the character to be checked
- */
  
+/**
+ * _isdigit - Checks if a character is a digit (0-9)
+ * @c: The character to be checked
+ *
+ * Return: 1 if c is a digit, 0 otherwise
+ */
+
 int _isupper(int c)
 {
     if (c >= 'A' && c <= 'Z')
