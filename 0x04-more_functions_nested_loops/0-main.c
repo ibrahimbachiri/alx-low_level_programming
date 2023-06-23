@@ -1,6 +1,8 @@
 #include "main.h"
 #include <stdio.h>
 
+int _isupper(int c);  /* Function declaration for _isupper */
+
 /**
  * main - check the code.
  *
