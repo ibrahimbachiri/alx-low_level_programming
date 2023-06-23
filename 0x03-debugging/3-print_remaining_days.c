@@ -8,8 +8,7 @@
  * @day: Day of the month
  * @year: Year
  *
- * Description: This function checks if the given date is a leap year and
- *              calculates the remaining days in the year accordingly.
+ * Return: void
  */
 void print_remaining_days(int month, int day, int year)
 {
