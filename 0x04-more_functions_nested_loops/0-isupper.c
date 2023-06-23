@@ -1,10 +1,13 @@
 #include <unistd.h>
  
 /**
- * _isdigit - Checks if a character is a digit (0-9)
+ * _isdigit - Checks if a character is uppercase
  * @c: The character to be checked
  *
- * Return: 1 if c is a digit, 0 otherwise
+ * Description: Checks if the given character is an uppercase letter
+ * according to the ASCII value.
+ *
+ * Return: 1 if c is a uppercase, 0 otherwise
  */
 
 int _isupper(int c)
@@ -14,4 +17,3 @@ int _isupper(int c)
     else
         return (0);
 }
-
