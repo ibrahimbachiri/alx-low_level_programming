@@ -1,2 +1,2 @@
 #!/bin/bash
-output_file="${cfile%.*}.s"
+gcc -S -masm=intel -o "${CFILE%.c}.s" "$CFILE"
