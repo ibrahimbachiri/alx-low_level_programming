@@ -1,6 +1,7 @@
 #ifndef MAIN_H
 #define MAIN_H
 
+void print_number(int n);
 largest_prime_factor(long n);
 int _isupper(int c);
 int _putchar(char c);
