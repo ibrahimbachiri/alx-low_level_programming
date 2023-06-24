@@ -30,5 +30,5 @@ int main(void)
 
     write(STDOUT_FILENO, newline, sizeof(newline) - 1);
 
-    return 0;
+    return (0);
 }
