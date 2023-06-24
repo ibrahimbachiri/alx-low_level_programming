@@ -1,23 +1,30 @@
 #include <stdio.h>
 
+/**
+ * main - Entry point of the program
+ *
+ * Return: Always 0
+ */
+
 int main(void)
 {
-    unsigned long int num1 = 1;
-    unsigned long int num2 = 2;
-    unsigned long int nextNum;
+	unsigned long int num1 = 1;
+	unsigned long int num2 = 2;
+	unsigned long int nextNum;
 
-    printf("%lu, %lu, ", num1, num2);
+	printf("%lu, %lu", num1, num2);
 
-    while (num1 + num2 < 4000000)
-    {
-        nextNum = num1 + num2;
-        printf("%lu, ", nextNum);
+	while (num1 + num2 < 4000000)
+	{
+		nextNum = num1 + num2;
 
-        num1 = num2;
-        num2 = nextNum;
-    }
+		printf(", %lu", nextNum);
 
-    printf("\n");
+		num1 = num2;
+		num2 = nextNum;
+	}
 
-    return 0;
+	printf("\n");
+
+	return (0);
 }
