@@ -3,9 +3,9 @@
 
 int main(void)
 {
-    char *str = "I am twelve years old";
+  char *str = "Itss tthe length";
     int len = _strlen(str);
-    printf("%d\n", len);  // Output: 23
+    printf("%d\n", len);
 
     return 0;
 }
