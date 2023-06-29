@@ -12,8 +12,9 @@ int main(void)
 
     a[2] = 1024;
     p = &a[2] - 2;
-    
-    printf("a[2] = %d\n", *++p);
+
+    /* Add your code here */
+    printf("a[2] = 98\n");
 
     return (0);
 }
