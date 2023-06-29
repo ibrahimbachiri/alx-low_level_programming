@@ -4,4 +4,4 @@
 char *_strcat(char *dest, char *src);
 
 
-#endif 
+#endif /* MAIN_H */ 
