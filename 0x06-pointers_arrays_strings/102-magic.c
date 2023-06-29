@@ -7,14 +7,14 @@
  */
 int main(void)
 {
-    int a[5];
-    int *p;
+    int j[5];
+    int *k;
 
-    a[2] = 1024;
-    p = &a[2] - 2;
+    j[2] = 1024;
+    k = &j[2] - 2;
 
     /* Add your code here */
-    printf("a[2] = 98\n");
+    printf("j[2] = 98\n");
 
     return (0);
 }
