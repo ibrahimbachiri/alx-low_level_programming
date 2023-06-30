@@ -3,18 +3,15 @@
 /**
  * main - Entry point
  *
- * Return: Always 0
+ * Return: Always 0 (Success)
  */
 int main(void)
 {
-    int j[5];
-    int *k;
+    int a[5] = {98, 198, 298, 398, 498};
+    int *p;
 
-    j[2] = 1024;
-    k = &j[2] - 2;
-
-    /* Add your code here */
-    printf("j[2] = 98\n");
-
+    p = &a[2];
+    *p = 98;
+    printf("a[2] = %d\n", *(p));
     return (0);
 }
