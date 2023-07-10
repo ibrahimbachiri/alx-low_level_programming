@@ -1,0 +1,9 @@
+/* _putchar.c */
+
+#include "main.h"
+
+void _puts(char *s)
+{
+  /* Implementation for _putchar goes here */
+  return 0;
+}
