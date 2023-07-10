@@ -31,6 +31,53 @@ int count_words(char *str)
 }
 
 /**
+ * allocate_words - Allocates memory for the words array.
+ * @word_count: The number of words.
+ *
+ * Return: The allocated words array.
+ */
+char **allocate_words(int word_count)
+{
+	char **words = (char **)malloc((word_count + 1) * sizeof(char *));
+	if (words == NULL)
+		return (NULL);
+
+	return (words);
+}
+
+/**
+ * allocate_word - Allocates memory for a single word.
+ * @word_len: The length of the word.
+ *
+ * Return: The allocated word.
+ */
+char *allocate_word(int word_len)
+{
+	char *word = (char *)malloc((word_len + 1) * sizeof(char));
+	if (word == NULL)
+		return (NULL);
+
+	return (word);
+}
+
+/**
+ * copy_word - Copies a word from the input string to the word array.
+ * @word: The word array.
+ * @str: The input string.
+ * @start: The starting index of the word in the input string.
+ * @end: The ending index of the word in the input string.
+ */
+void copy_word(char *word, char *str, int start, int end)
+{
+	int i;
+
+	for (i = start; i < end; i++)
+		word[i - start] = str[i];
+
+	word[i - start] = '\0';
+}
+
+/**
  * strtow - Splits a string into words.
  * @str: The input string.
  *
@@ -48,7 +95,7 @@ char **strtow(char *str)
 	if (word_count == 0)
 		return (NULL);
 
-	words = (char **)malloc((word_count + 1) * sizeof(char *));
+	words = allocate_words(word_count);
 	if (words == NULL)
 		return (NULL);
 
@@ -66,7 +113,7 @@ char **strtow(char *str)
 				k++;
 			}
 
-			words[j] = (char *)malloc((word_len + 1) * sizeof(char));
+			words[j] = allocate_word(word_len);
 			if (words[j] == NULL)
 			{
 				for (k = 0; k < j; k++)
@@ -75,20 +122,10 @@ char **strtow(char *str)
 				return (NULL);
 			}
 
-			k = 0;
-			while (str[i] != ' ' && str[i] != '\0')
-			{
-				words[j][k] = str[i];
-				k++;
-				i++;
-			}
-			words[j][k] = '\0';
+			copy_word(words[j], str, i, k);
 			j++;
 		}
-		else
-		{
-			i++;
-		}
+		i++;
 	}
 
 	words[j] = NULL;
