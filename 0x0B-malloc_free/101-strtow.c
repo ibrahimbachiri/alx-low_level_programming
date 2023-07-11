@@ -2,8 +2,32 @@
 #include <stdlib.h>
 #include <string.h>
 
-void free_tab(char **tab);
+/**
+ * free_tab - Frees the memory allocated for a table of strings.
+ * @tab: The table of strings to free.
+ *
+ * Return: Nothing.
+ */
+void free_tab(char **tab)
+{
+    int i;
 
+    if (tab == NULL)
+        return;
+
+    for (i = 0; tab[i] != NULL; i++)
+    {
+        free(tab[i]);
+    }
+    free(tab);
+}
+
+/**
+ * strtow - Splits a string into words.
+ * @str: The string to split.
+ *
+ * Return: Pointer to an array of strings (words).
+ */
 char **strtow(char *str)
 {
     int len = strlen(str);
@@ -51,18 +75,4 @@ char **strtow(char *str)
     s[k] = NULL;
 
     return s;
-}
-
-void free_tab(char **tab)
-{
-    int i;
-
-    if (tab == NULL)
-        return;
-
-    for (i = 0; tab[i] != NULL; i++)
-    {
-        free(tab[i]);
-    }
-    free(tab);
 }
