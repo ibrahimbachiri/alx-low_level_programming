@@ -10,16 +10,16 @@
  */
 void free_tab(char **tab)
 {
-    int i;
+	int i;
 
-    if (tab == NULL)
-        return;
+	if (tab == NULL)
+		return;
 
-    for (i = 0; tab[i] != NULL; i++)
-    {
-        free(tab[i]);
-    }
-    free(tab);
+	for (i = 0; tab[i] != NULL; i++)
+	{
+		free(tab[i]);
+	}
+	free(tab);
 }
 
 /**
@@ -30,49 +30,49 @@ void free_tab(char **tab)
  */
 char **strtow(char *str)
 {
-    int len = strlen(str);
-    int i, j, k = 0, word_count = 0;
-    char **s;
+	int len = strlen(str);
+	int i, j, k = 0, word_count = 0;
+	char **s;
 
-    if (len == 0)
-        return NULL;
+	if (len == 0)
+	  return (NULL);
 
-    for (i = 0; i < len; i++)
-    {
-        if (str[i] != ' ' && (i == 0 || str[i - 1] == ' '))
-            word_count++;
-    }
+	for (i = 0; i < len; i++)
+	{
+		if (str[i] != ' ' && (i == 0 || str[i - 1] == ' '))
+			word_count++;
+	}
 
-    s = (char **)malloc((word_count + 1) * sizeof(char *));
-    if (s == NULL)
-        return NULL;
+	s = (char **)malloc((word_count + 1) * sizeof(char *));
+	if (s == NULL)
+	  return (NULL);
 
-    for (i = 0; i < len; i++)
-    {
-        if (str[i] != ' ' && (i == 0 || str[i - 1] == ' '))
-        {
-            int word_len = 0;
-            j = i;
-            while (str[j] != ' ' && str[j] != '\0')
-            {
-                word_len++;
-                j++;
-            }
+	for (i = 0; i < len; i++)
+	{
+		if (str[i] != ' ' && (i == 0 || str[i - 1] == ' '))
+		{
+			int word_len = 0;
+			j = i;
+			while (str[j] != ' ' && str[j] != '\0')
+			{
+				word_len++;
+				j++;
+			}
 
-            s[k] = (char *)malloc((word_len + 1) * sizeof(char));
-            if (s[k] == NULL)
-            {
-                free_tab(s);
-                return NULL;
-            }
+			s[k] = (char *)malloc((word_len + 1) * sizeof(char));
+			if (s[k] == NULL)
+			{
+				free_tab(s);
+				return (NULL);
+			}
 
-            strncpy(s[k], str + i, word_len);
-            s[k][word_len] = '\0';
-            k++;
-        }
-    }
+			strncpy(s[k], str + i, word_len);
+			s[k][word_len] = '\0';
+			k++;
+		}
+	}
 
-    s[k] = NULL;
+	s[k] = NULL;
 
-    return s;
+	return (s);
 }
