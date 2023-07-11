@@ -16,9 +16,8 @@ void free_tab(char **tab)
 		return;
 
 	for (i = 0; tab[i] != NULL; i++)
-	{
 		free(tab[i]);
-	}
+
 	free(tab);
 }
 
@@ -35,17 +34,15 @@ char **strtow(char *str)
 	char **s;
 
 	if (len == 0)
-	  return (NULL);
+		return (NULL);
 
 	for (i = 0; i < len; i++)
-	{
 		if (str[i] != ' ' && (i == 0 || str[i - 1] == ' '))
 			word_count++;
-	}
 
 	s = (char **)malloc((word_count + 1) * sizeof(char *));
 	if (s == NULL)
-	  return (NULL);
+		return (NULL);
 
 	for (i = 0; i < len; i++)
 	{
@@ -53,6 +50,7 @@ char **strtow(char *str)
 		{
 			int word_len = 0;
 			j = i;
+
 			while (str[j] != ' ' && str[j] != '\0')
 			{
 				word_len++;
