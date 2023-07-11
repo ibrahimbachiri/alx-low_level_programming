@@ -2,53 +2,53 @@
 #include <stdlib.h>
 #include <string.h>
 
+void free_tab(char **tab);
+
 char **strtow(char *str)
 {
-    int len = 0, l = 0, i, j = 0;
+    int len = strlen(str);
+    int i, j, k = 0, word_count = 0;
     char **s;
 
-    if (str == NULL)
+    if (len == 0)
         return NULL;
 
-    for (len = 0; str[len] != '\0'; len++)
-        ;
+    for (i = 0; i < len; i++)
+    {
+        if (str[i] != ' ' && (i == 0 || str[i - 1] == ' '))
+            word_count++;
+    }
 
-    s = (char **)malloc((len + 1) * sizeof(char *));
+    s = (char **)malloc((word_count + 1) * sizeof(char *));
     if (s == NULL)
         return NULL;
 
     for (i = 0; i < len; i++)
     {
-        if (str[i] == ' ' && l == 0)
+        if (str[i] != ' ' && (i == 0 || str[i - 1] == ' '))
         {
-            s[j] = malloc((i - l + 1) * sizeof(char));
-            strncpy(s[j], str + l, i - l);
-            s[j][i - l] = '\0';
-            j++;
-            l = i + 1;
-        }
-        else if (str[i] != ' ')
-        {
-            if (l == 1)
+            int word_len = 0;
+            j = i;
+            while (str[j] != ' ' && str[j] != '\0')
             {
-                l = i;
+                word_len++;
+                j++;
             }
-            else if (l == 0 && (i == 0 || str[i - 1] == ' '))
+
+            s[k] = (char *)malloc((word_len + 1) * sizeof(char));
+            if (s[k] == NULL)
             {
-                l = i;
+                free_tab(s);
+                return NULL;
             }
+
+            strncpy(s[k], str + i, word_len);
+            s[k][word_len] = '\0';
+            k++;
         }
     }
 
-    if (l < len)
-    {
-        s[j] = malloc((len - l + 1) * sizeof(char));
-        strncpy(s[j], str + l, len - l);
-        s[j][len - l] = '\0';
-        j++;
-    }
-
-    s[j] = NULL;
+    s[k] = NULL;
 
     return s;
 }
