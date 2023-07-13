@@ -1,5 +1,6 @@
 #include <stdio.h>
 #include <stdlib.h>
+#include "string.h"
 
 /**
  * _isdigit - Checks if a character is a digit (0-9)
