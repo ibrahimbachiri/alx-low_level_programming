@@ -1,5 +1,6 @@
 #ifndef DOG_H
 #define DOG_H
+
 /**
  * struct dog - Structure representing a dog.
  * @name: Pointer to the dog's name.
@@ -15,7 +16,12 @@ struct dog
     float age;
     char *owner;
 };
-/* Function prototype for init_dog */
+
+/* Define a new type dog_t as a new name for struct dog */
+typedef struct dog dog_t;
+
+/* Function prototypes */
 void init_dog(struct dog *d, char *name, float age, char *owner);
 void print_dog(struct dog *d);
+
 #endif /* DOG_H */
