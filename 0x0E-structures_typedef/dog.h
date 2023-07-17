@@ -11,9 +11,9 @@
  */
 struct dog
 {
-    char *name;
-    float age;
-    char *owner;
+	char *name;
+	float age;
+	char *owner;
 };
 
 /* Define a new type dog_t as a new name for struct dog */
