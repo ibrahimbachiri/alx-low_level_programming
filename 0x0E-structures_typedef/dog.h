@@ -7,6 +7,7 @@
  * @age: The age of the dog.
  * @owner: Pointer to the owner's name.
  *
+ * Description: Structure representing a dog with name, age, and owner.
  */
 struct dog
 {
