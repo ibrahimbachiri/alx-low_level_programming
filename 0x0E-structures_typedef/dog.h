@@ -21,8 +21,16 @@ typedef struct dog dog_t;
 
 /* Function prototypes */
 void init_dog(struct dog *d, char *name, float age, char *owner);
+/* Initializes a struct dog with the given values for name, age, and owner. */
+
 void print_dog(struct dog *d);
+/* Prints the details of a struct dog. If an element of d is NULL, print (nil)
+ * instead of this element. */
+
 dog_t *new_dog(char *name, float age, char *owner);
+/* Creates a new dog and returns a pointer to it. */
+
 void free_dog(dog_t *d);
+/* Frees the memory allocated for a struct dog. */
 
 #endif /* DOG_H */
