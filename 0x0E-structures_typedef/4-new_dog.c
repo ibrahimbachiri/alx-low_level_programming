@@ -15,15 +15,12 @@
 dog_t *new_dog(char *name, float age, char *owner)
 {
     dog_t *new_dog;
-    
     if (name == NULL || owner == NULL)
         return (NULL);
-
     /* Allocate memory for the dog_t structure */
     new_dog = (dog_t *)malloc(sizeof(dog_t));
     if (new_dog == NULL)
         return (NULL);
-
     /* Allocate memory for the name and owner strings */
     new_dog->name = strdup(name);
     if (new_dog->name == NULL)
@@ -31,7 +28,6 @@ dog_t *new_dog(char *name, float age, char *owner)
         free(new_dog);
         return (NULL);
     }
-
     new_dog->owner = strdup(owner);
     if (new_dog->owner == NULL)
     {
@@ -39,9 +35,7 @@ dog_t *new_dog(char *name, float age, char *owner)
         free(new_dog);
         return (NULL);
     }
-
     /* Assign the age */
     new_dog->age = age;
-
     return (new_dog);
 }
