@@ -1,5 +1,5 @@
 #include "dog.h"
-#include <stddef.h> // Add this line to include the <stddef.h> header.
+#include <stddef.h>
 
 /**
  * init_dog - Initializes a struct dog with the provided information.
