@@ -9,7 +9,6 @@
  *
  * Description: Structure representing a dog with name, age, and owner.
  */
-
 struct dog
 {
 	char *name;
@@ -35,4 +34,3 @@ void free_dog(dog_t *d);
 /* Frees the memory allocated for a struct dog. */
 
 #endif /* DOG_H */
-
