@@ -1,6 +1,6 @@
-#ifndef OBJECT_LIKE_MACRO_H
-#define OBJECT_LIKE_MACRO_H
+#ifndef _0_OBJECT_LIKE_MACRO_H_
+#define _0_OBJECT_LIKE_MACRO_H_
 
-#define BUFFER_SIZE	1024
+#define SIZE 1024
 
-#endif /* OBJECT_LIKE_MACRO_H */
+#endif /* _0_OBJECT_LIKE_MACRO_H_ */
