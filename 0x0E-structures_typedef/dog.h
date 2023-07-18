@@ -7,14 +7,15 @@
  * @age: The age of the dog.
  * @owner: Pointer to the owner's name.
  *
- * Description: Structure representing a dog with name, age, and owner.
+ * Description:
+ * Structure representing a dog with name, age, and owner.
  */
 
 struct dog
 {
-	char *name;
-	float age;
-	char *owner;
+    char *name;
+    float age;
+    char *owner;
 };
 
 /* Define a new type dog_t as a new name for struct dog */
