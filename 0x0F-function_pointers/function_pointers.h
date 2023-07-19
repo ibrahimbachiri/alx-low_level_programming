@@ -9,9 +9,7 @@
  *   - print_name_as_is: Prints a given name as it is without any modifications.
  *   - print_name_uppercase: Prints a given name in uppercase letters.
  */
-
 /* Function prototype for print_name */
-
 void print_name(char *name, void (*f)(char *));
 
 
