@@ -10,5 +10,4 @@
  * - print_name_uppercase: Prints a given name in uppercase letters.
  */
 void print_name(char *name, void (*f)(char *));
-
 #endif /* FUNCTION_POINTERS_H */
