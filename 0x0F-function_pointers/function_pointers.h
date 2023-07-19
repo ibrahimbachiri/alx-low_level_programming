@@ -1,6 +1,6 @@
 #ifndef FUNCTION_POINTERS_H
 #define FUNCTION_POINTERS_H
-
+#include <stddef.h>
 
 /* Prints a name using the given printing function. */
 void print_name(char *name, void (*f)(char *));
