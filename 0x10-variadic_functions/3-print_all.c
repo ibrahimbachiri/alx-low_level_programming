@@ -36,7 +36,7 @@ void print_all(const char * const format, ...)
 			printf("%s%d", separator, i_arg);
 			break;
 		case 'f':
-			f_arg = va_arg(args, double); // float arguments are promoted to double
+			f_arg = va_arg(args, double);
 			printf("%s%f", separator, f_arg);
 			break;
 		case 's':
