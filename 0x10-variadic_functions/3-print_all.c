@@ -5,6 +5,11 @@
 /**
  * print_all - Prints anything.
  * @format: The format string representing the types of arguments.
+ *	c: char
+ *	i: integer
+ *	f: float
+ *	s: char * (if the string is NULL, print (nil) instead)
+ *	Any other char should be ignored.
  */
 void print_all(const char * const format, ...)
 {
@@ -31,7 +36,7 @@ void print_all(const char * const format, ...)
 			printf("%s%d", separator, i_arg);
 			break;
 		case 'f':
-			f_arg = va_arg(args, double);
+			f_arg = va_arg(args, double); /* float arguments are promoted to double */
 			printf("%s%f", separator, f_arg);
 			break;
 		case 's':
