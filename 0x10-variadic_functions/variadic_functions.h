@@ -11,7 +11,7 @@
 typedef struct format
 {
 	char *spec;
-	void (*func)(va_list args); // Add 'args' as the parameter name
+	void (*func)(va_list args);
 } format_t;
 
 int sum_them_all(const unsigned int n, ...);
