@@ -37,7 +37,7 @@ void print_all(const char * const format, ...)
 		}
 		else if (format[i] == 'f')
 		{
-			f_arg = va_arg(args, double); /* float arguments are promoted to double */
+		  f_arg = va_arg(args, double);
 			printf("%s%f", separator, f_arg);
 		}
 		else if (format[i] == 's')
