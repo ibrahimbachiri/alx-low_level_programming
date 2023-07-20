@@ -4,12 +4,12 @@
 
 /**
  * print_all - Prints anything.
- * @format: The format string representing the types of arguments.
- *	c: char
- *	i: integer
- *	f: float
- *	s: char * (if the string is NULL, print (nil) instead)
- *	Any other char should be ignored.
+ * @format: Format string representing the types of arguments.
+ * c: char
+ * i: integer
+ * f: float
+ * s: char * (if the string is NULL, print (nil) instead)
+ * Any other char should be ignored.
  */
 void print_all(const char * const format, ...)
 {
