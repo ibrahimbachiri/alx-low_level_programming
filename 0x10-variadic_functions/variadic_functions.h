@@ -12,7 +12,7 @@ typedef struct format
 {
 	char *spec;
 	void (*func)(va_list args);
-} format_t;
+}format_t;
 
 int sum_them_all(const unsigned int n, ...);
 void print_numbers(const char *separator, const unsigned int n, ...);
