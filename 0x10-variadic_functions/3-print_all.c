@@ -8,8 +8,6 @@
  * c: char
  * i: integer
  * f: float
- * s: char * (if the string is NULL, print (nil) instead)
- * Any other char should be ignored.
  */
 void print_all(const char * const format, ...)
 {
