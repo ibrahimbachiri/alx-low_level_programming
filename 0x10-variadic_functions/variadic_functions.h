@@ -8,16 +8,14 @@
  * @spec: The format specifier
  * @func: The corresponding function to handle the format specifier
  */
-struct format
+typedef struct format
 {
-	char *spec;
-	void (*func)(va_list args);
-};
-typedef struct format format_t;
+  char *spec;
+  void (*func)(va_list args);
+}format_t;
 
 int sum_them_all(const unsigned int n, ...);
 void print_numbers(const char *separator, const unsigned int n, ...);
 void print_strings(const char *separator, const unsigned int n, ...);
 void print_all(const char * const format, ...);
-
 #endif /* VARIADIC_FUNCTIONS_H */
