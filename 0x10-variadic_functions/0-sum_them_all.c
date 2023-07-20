@@ -2,9 +2,9 @@
 #include "variadic_functions.h"
 
 /**
- * main - check the code
+ * sum
  *
- * Return: Always 0.
+ * va-list-va-end
  */
 int sum_them_all(const unsigned int n, ...)
 {
