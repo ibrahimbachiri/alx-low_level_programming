@@ -13,4 +13,5 @@ typedef struct format
 } format_t;
 
 int sum_them_all(const unsigned int n, ...);
+
 #endif /* VARIADIC_FUNCTIONS_H */
