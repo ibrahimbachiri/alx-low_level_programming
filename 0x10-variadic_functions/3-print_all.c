@@ -1,3 +1,15 @@
+#include <stdarg.h>
+#include <stdio.h>
+#include "variadic_functions.h"
+
+/**
+ * print_all - Prints anything.
+ * @format: Format string representing the types of arguments.
+ * c: char
+ * i: integer
+ * f: float
+ * s: char * (if the string is NULL, print (nil) instead)
+ */
 void print_all(const char * const format, ...)
 {
     va_list args;
