@@ -53,6 +53,7 @@ void print_all(const char * const format, ...)
             printf("%s", str);
             break;
         }
+
         if (format[i + 1])
         {
             printf(", ");
