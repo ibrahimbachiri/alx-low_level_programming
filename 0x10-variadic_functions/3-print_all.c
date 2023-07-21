@@ -5,10 +5,10 @@
 /**
  * print_all - Prints anything.
  * @format: A format string representing the types of arguments.
- *         c: char
- *         i: integer
- *         f: float
- *         s: char * (if the string is NULL, print (nil) instead)
+ *          c: char
+ *          i: integer
+ *          f: float
+ *          s: char * (if the string is NULL, print (nil) instead)
  *
  * Description: This function prints a variable number of arguments based on
  * the format string provided. It takes a constant pointer to a character,
