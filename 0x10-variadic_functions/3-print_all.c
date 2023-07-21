@@ -1,85 +1,66 @@
-#include <stdarg.h>
 #include <stdio.h>
+#include <stdarg.h>
 #include "variadic_functions.h"
 
 /**
- * print_all - Prints anything.
- * @format: A format string representing the types of arguments.
- *          c: char
- *          i: integer
- *          f: float
- *          s: char * (if the string is NULL, print (nil) instead)
- *
- * Description: This function prints a variable number of arguments based on
- * the format string provided. It takes a constant pointer to a character,
- * representing the format string, and a variable number of arguments (denoted
- * by `...`). The function interprets the characters in the format string and
- * prints the corresponding argument based on the type specified. The supported
- * format characters are 'c' for char, 'i' for integer, 'f' for float, and 's'
- * for a string. If a string argument is NULL, the function prints "(nil)".
- * The printed arguments are separated by commas and spaces, and a newline
- * character is added at the end of the output.
+ * print_all - Prints anything based on the format provided
+ * @format: A list of types of arguments passed to the function
+ * c: char
+ * i: integer
+ * f: float
+ * s: char * (if the string is NULL, print (nil) instead)
+ * Any other char should be ignored
  */
 void print_all(const char * const format, ...)
 {
     va_list args;
-    unsigned int i = 0;
-    char *separator = "";
+    char *str;
+    int int_arg;
+    float float_arg;
+    char char_arg;
+    int i = 0;
 
     va_start(args, format);
 
     while (format && format[i])
     {
-        switch (format[i])
+        char_arg = format[i];
+
+        if (format[i + 1])
         {
-            case 'c':
-                print_char(args, separator);
-                break;
-            case 'i':
-                print_int(args, separator);
-                break;
-            case 'f':
-                print_float(args, separator);
-                break;
-            case 's':
-                print_string(args, separator);
-                break;
-            default:
-                break;
+            i++;
         }
 
-        separator = ", ";
+        switch (char_arg)
+        {
+        case 'c':
+            printf("%c", va_arg(args, int));
+            break;
+        case 'i':
+            int_arg = va_arg(args, int);
+            printf("%d", int_arg);
+            break;
+        case 'f':
+            float_arg = va_arg(args, double);
+            printf("%f", float_arg);
+            break;
+        case 's':
+            str = va_arg(args, char*);
+            if (str == NULL)
+            {
+                str = "(nil)";
+            }
+            printf("%s", str);
+            break;
+        }
+        if (format[i + 1])
+        {
+            printf(", ");
+        }
         i++;
     }
 
-    printf("\n");
     va_end(args);
-}
 
-/* Helper functions for printing each argument type */
-
-void print_char(va_list args, char *separator)
-{
-    char c_arg = va_arg(args, int);
-    printf("%s%c", separator, c_arg);
-}
-
-void print_int(va_list args, char *separator)
-{
-    int i_arg = va_arg(args, int);
-    printf("%s%d", separator, i_arg);
-}
-
-void print_float(va_list args, char *separator)
-{
-    float f_arg = va_arg(args, double);
-    printf("%s%f", separator, f_arg);
-}
-
-void print_string(va_list args, char *separator)
-{
-    char *s_arg = va_arg(args, char *);
-    if (s_arg == NULL)
-        s_arg = "(nil)";
-    printf("%s%s", separator, s_arg);
+    printf("\n");
 }
