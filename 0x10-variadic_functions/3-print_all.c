@@ -60,15 +60,23 @@ void print_all(const char * const format, ...)
 
 	va_start(args, format);
 
+	valid_format formats[] = {
+		{'c', print_char},
+		{'i', print_int},
+		{'f', print_float},
+		{'s', print_string},
+		{0, NULL}
+	};
+
 	while (format && format[i])
 	{
 		j = 0;
-		while (valid_formats[j])
+		while (formats[j].specifier != 0)
 		{
-			if (format[i] == valid_formats[j][0])
+			if (format[i] == formats[j].specifier)
 			{
 				printf("%s", separator);
-				valid_formats[j][1](args);
+				formats[j].print_func(args);
 				separator = ", ";
 				break;
 			}
