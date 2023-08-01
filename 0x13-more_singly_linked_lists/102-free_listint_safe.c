@@ -10,27 +10,27 @@
  */
 size_t free_listint_safe(listint_t **h)
 {
-        listint_t *current, *temp;
-        size_t count = 0;
+	listint_t *current, *temp;
+	size_t count = 0;
 
-        if (h == NULL || *h == NULL)
-                return (0);
+	if (h == NULL || *h == NULL)
+		return (0);
 
-        current = *h;
-        while (current != NULL)
-        {
-                count++;
-                temp = current;
-                current = current->next;
-                free(temp);
+	current = *h;
+	while (current != NULL)
+	{
+		count++;
+		temp = current;
+		current = current->next;
+		free(temp);
 
-                /* Check for a loop in the linked list */
-                if (current == *h)
-                {
-                        *h = NULL;
-                        break;
-                }
-        }
+		/* Check for a loop in the linked list */
+		if (current == *h)
+		{
+			*h = NULL;
+			break;
+		}
+	}
 
-        return (count);
+	return (count);
 }
