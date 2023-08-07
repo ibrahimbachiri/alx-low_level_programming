@@ -1,14 +1,6 @@
 #include <stdlib.h>
 #include <elf.h>
 #include <stdio.h>
-/*
- * 100-elf_header.c
- *
- * This program prints out the ELF header information from a file.
- *
- * @param argc The number of command-line arguments.
- * @param argv The command-line arguments.
- */
 /**
  * main - Prints out the ELF header information from a file.
  *
