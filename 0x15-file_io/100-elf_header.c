@@ -4,6 +4,8 @@
 /**
  * print_error - Print an error message.
  * @msg: The error message to be printed.
+ *
+ * Description: This function prints an error message to the standard output.
  */
 void print_error(char *msg)
 {
@@ -13,22 +15,23 @@ void print_error(char *msg)
 /**
  * print_elf_header_info - Print information from the ELF header.
  * @ehdr: Pointer to the ELF header structure.
+ *
+ * Description: This function prints information from the ELF header,
+ *              including its magic number, class, data encoding, version,
+ *              OS/ABI, type, entry point address, and other details.
  */
 void print_elf_header_info(Elf64_Ehdr *ehdr)
 {
 	int i;
 
 	printf("ELF Header:\n");
-
 	printf("  Magic:  ");
 	for (i = 0; i < EI_NIDENT; i++)
 		printf("%2.2x ", ehdr->e_ident[i]);
 	printf("\n");
 
 	printf("  Class:                             %s\n", (ehdr->e_ident[EI_CLASS] == ELFCLASS64) ? "ELF64" : "Invalid class");
-
 	printf("  Data:                              %s\n", (ehdr->e_ident[EI_DATA] == ELFDATA2LSB) ? "2's complement, little endian" : "Invalid data encoding");
-
 	printf("  Version:                           %d\n", ehdr->e_ident[EI_VERSION]);
 
 	printf("  OS/ABI:                            ");
@@ -60,23 +63,14 @@ void print_elf_header_info(Elf64_Ehdr *ehdr)
 	}
 
 	printf("  Entry point address:               0x%lx\n", (unsigned long)ehdr->e_entry);
-
 	printf("  Start of program headers:          %lu (bytes into file)\n", (unsigned long)ehdr->e_phoff);
-
 	printf("  Start of section headers:          %lu (bytes into file)\n", (unsigned long)ehdr->e_shoff);
-
 	printf("  Flags:                             0x%x\n", ehdr->e_flags);
-
 	printf("  Size of this header:               %lu (bytes)\n", (unsigned long)ehdr->e_ehsize);
-
 	printf("  Size of program headers:           %lu (bytes)\n", (unsigned long)ehdr->e_phentsize);
-
 	printf("  Number of program headers:         %lu\n", (unsigned long)ehdr->e_phnum);
-
 	printf("  Size of section headers:           %lu (bytes)\n", (unsigned long)ehdr->e_shentsize);
-
 	printf("  Number of section headers:         %lu\n", (unsigned long)ehdr->e_shnum);
-
 	printf("  Section header string table index: %lu\n", (unsigned long)ehdr->e_shstrndx);
 }
 
@@ -85,6 +79,9 @@ void print_elf_header_info(Elf64_Ehdr *ehdr)
  * @argc: The number of command-line arguments.
  * @argv: An array of pointers to command-line arguments.
  * Return: 0 on success, 1 on failure.
+ *
+ * Description: This program takes an ELF file as input and prints
+ *              information from its ELF header using the print_elf_header_info function.
  */
 int main(int argc, char *argv[])
 {
@@ -119,7 +116,6 @@ int main(int argc, char *argv[])
 	}
 
 	print_elf_header_info(&ehdr);
-
 	fclose(file);
 	return (0);
 }
