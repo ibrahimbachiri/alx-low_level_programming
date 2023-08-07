@@ -1,7 +1,10 @@
-#include <stdio.h>
-#include <stdlib.h>
 #include <fcntl.h>
 #include <unistd.h>
+#include <sys/types.h>
+#include <sys/stat.h>
+#include <stdio.h>
+#include <stdlib.h>
+#include "main.h"
 
 /**
  * read_textfile - Reads and prints the content of a text file to stdout.
