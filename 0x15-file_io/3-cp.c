@@ -1,0 +1,75 @@
+#include <fcntl.h>
+#include <unistd.h>
+#include <sys/types.h>
+#include <sys/stat.h>
+#include <stdio.h>
+#include <stdlib.h>
+
+#define BUF_SIZE 1024
+
+int read_from_file(const char *filename, char *buf);
+int write_to_file(const char *filename, char *buf, int bytes_to_write);
+void print_error(const char *message, const char *filename);
+void close_fd(int fd);
+
+/**
+ * main - Copies content of a file to another file.
+ * @argc: Number of arguments.
+ * @argv: Array of arguments.
+ *
+ * Return: 0 on success, or exit status if an error occurs.
+ */
+int main(int argc, char *argv[])
+{
+    char buf[BUF_SIZE];
+    int read_bytes, write_bytes;
+    int fd_from, fd_to;
+
+    if (argc != 3)
+    {
+        dprintf(2, "Usage: %s file_from file_to\n", argv[0]);
+        exit(97);
+    }
+
+    fd_from = open(argv[1], O_RDONLY);
+    if (fd_from == -1)
+    {
+        print_error("Error: Can't read from file", argv[1]);
+        exit(98);
+    }
+
+    fd_to = open(argv[2], O_WRONLY | O_CREAT | O_TRUNC, S_IRUSR | S_IWUSR | S_IRGRP | S_IWGRP | S_IROTH);
+    if (fd_to == -1)
+    {
+        print_error("Error: Can't write to", argv[2]);
+        close_fd(fd_from);
+        exit(99);
+    }
+
+    do
+    {
+        read_bytes = read_from_file(argv[1], buf);
+        if (read_bytes == -1)
+        {
+            print_error("Error: Can't read from file", argv[1]);
+            close_fd(fd_from);
+            close_fd(fd_to);
+            exit(98);
+        }
+
+        write_bytes = write_to_file(argv[2], buf, read_bytes);
+        if (write_bytes == -1 || write_bytes != read_bytes)
+        {
+            print_error("Error: Can't write to", argv[2]);
+            close_fd(fd_from);
+            close_fd(fd_to);
+            exit(99);
+        }
+    } while (read_bytes > 0);
+
+    close_fd(fd_from);
+    close_fd(fd_to);
+    return (0);
+}
+
+/* Rest of the code remains the same as provided in the previous response */
