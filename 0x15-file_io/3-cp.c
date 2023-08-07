@@ -14,7 +14,7 @@
  */
 void print_error(char *msg)
 {
-	dprintf(2, "Error: %s\n", msg);
+    dprintf(2, "Error: %s\n", msg);
 }
 
 /**
@@ -25,57 +25,65 @@ void print_error(char *msg)
  */
 void copy_file(int src, int dest)
 {
-	char buffer[BUFFER_SIZE];
-	ssize_t n_read, n_written;
+    char buffer[BUFFER_SIZE];
+    ssize_t n_read, n_written;
 
-	while ((n_read = read(src, buffer, sizeof(buffer))) > 0)
-	{
-		n_written = write(dest, buffer, n_read);
-		if (n_written != n_read || n_written < 0)
-		{
-			print_error("Can't write to file");
-			exit(99);
-		}
-	}
+    while ((n_read = read(src, buffer, sizeof(buffer))) > 0)
+    {
+        n_written = write(dest, buffer, n_read);
+        if (n_written != n_read || n_written < 0)
+        {
+            print_error("Can't write to file");
+            exit(99);
+        }
+    }
 
-	if (n_read < 0)
-	{
-		print_error("Can't read from file");
-		exit(98);
-	}
+    if (n_read < 0)
+    {
+        print_error("Can't read from file");
+        exit(98);
+    }
 }
 
+/**
+ * main - Copies the content of one file to another.
+ *
+ * @argc: The number of command-line arguments.
+ * @argv: The command-line arguments.
+ *
+ * Return: On success, returns 0. Otherwise, exits with an error code.
+ */
 int main(int argc, char *argv[])
 {
-	int fd_from, fd_to;
+    int fd_from, fd_to;
 
-	if (argc != 3)
-	{
-		print_error("Usage: cp file_from file_to");
-		exit(97);
-	}
+    if (argc != 3)
+    {
+        print_error("Usage: cp file_from file_to");
+        exit(97);
+    }
 
-	fd_from = open(argv[1], O_RDONLY);
-	if (fd_from < 0)
-	{
-		print_error("Can't read from source file");
-		exit(98);
-	}
+    fd_from = open(argv[1], O_RDONLY);
+    if (fd_from < 0)
+    {
+        print_error("Can't read from source file");
+        exit(98);
+    }
 
-	fd_to = open(argv[2], O_CREAT | O_TRUNC | O_WRONLY, 0664);
-	if (fd_to < 0)
-	{
-		print_error("Can't write to destination file");
-		exit(99);
-	}
+    fd_to = open(argv[2], O_CREAT | O_TRUNC | O_WRONLY, 0664);
+    if (fd_to < 0)
+    {
+        print_error("Can't write to destination file");
+        exit(99);
+    }
 
-	copy_file(fd_from, fd_to);
+    copy_file(fd_from, fd_to);
 
-	if (close(fd_from) < 0 || close(fd_to) < 0)
-	{
-		print_error("Can't close files");
-		exit(100);
-	}
+    if (close(fd_from) < 0 || close(fd_to) < 0)
+    {
+        print_error("Can't close files");
+        exit(100);
+    }
 
-	return (0);
+    return (0);
 }
