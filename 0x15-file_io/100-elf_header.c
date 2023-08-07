@@ -1,23 +1,31 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <elf.h>
-
-int main(int argc, char *argv[]) {
+/**
+ * main - check the code
+ *
+ * Return: Always 0.
+ */
+int main(int argc, char *argv[])
+{
   FILE *fp;
   Elf32_Ehdr elf_hdr;
 
-  if (argc != 2) {
+  if (argc != 2)
+  {
     fprintf(stderr, "Usage: %s elf_file\n", argv[0]);
     exit(1);
   }
 
   fp = fopen(argv[1], "rb");
-  if (fp == NULL) {
+  if (fp == NULL)
+  {
     fprintf(stderr, "Could not open file %s\n", argv[1]);
     exit(1);
   }
 
-  if (fread(&elf_hdr, sizeof(elf_hdr), 1, fp) != 1) {
+  if (fread(&elf_hdr, sizeof(elf_hdr), 1, fp) != 1)
+  {
     fprintf(stderr, "Could not read ELF header from file %s\n", argv[1]);
     exit(1);
   }
@@ -35,5 +43,5 @@ int main(int argc, char *argv[]) {
 
   fclose(fp);
 
-  return 0;
+  return (0);
 }
