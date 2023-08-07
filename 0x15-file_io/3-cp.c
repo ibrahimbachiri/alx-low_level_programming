@@ -5,58 +5,75 @@
 #include <sys/stat.h>
 #include <fcntl.h>
 
+#define BUFFER_SIZE 1024
+
 /**
- * main - Copies the content of one file to another.
+ * print_error - Prints an error message to stderr.
  *
- * @argc: The number of command-line arguments.
- * @argv: The command-line arguments.
- *
- * Return: On success, returns 0. Otherwise, exits with an error code.
+ * @msg: The error message to print.
  */
+void print_error(char *msg)
+{
+	dprintf(2, "Error: %s\n", msg);
+}
+
+/**
+ * copy_file - Copies the content of one file to another.
+ *
+ * @src: The source file descriptor.
+ * @dest: The destination file descriptor.
+ */
+void copy_file(int src, int dest)
+{
+	char buffer[BUFFER_SIZE];
+	ssize_t n_read, n_written;
+
+	while ((n_read = read(src, buffer, sizeof(buffer))) > 0)
+	{
+		n_written = write(dest, buffer, n_read);
+		if (n_written != n_read || n_written < 0)
+		{
+			print_error("Can't write to file");
+			exit(99);
+		}
+	}
+
+	if (n_read < 0)
+	{
+		print_error("Can't read from file");
+		exit(98);
+	}
+}
+
 int main(int argc, char *argv[])
 {
 	int fd_from, fd_to;
-	char buffer[1024];
-	int n;
 
 	if (argc != 3)
 	{
-		dprintf(2, "Usage: cp file_from file_to\n");
+		print_error("Usage: cp file_from file_to");
 		exit(97);
 	}
 
 	fd_from = open(argv[1], O_RDONLY);
 	if (fd_from < 0)
 	{
-		dprintf(2, "Error: Can't read from file %s\n", argv[1]);
+		print_error("Can't read from source file");
 		exit(98);
 	}
 
 	fd_to = open(argv[2], O_CREAT | O_TRUNC | O_WRONLY, 0664);
 	if (fd_to < 0)
 	{
-		dprintf(2, "Error: Can't write to file %s\n", argv[2]);
+		print_error("Can't write to destination file");
 		exit(99);
 	}
 
-	while ((n = read(fd_from, buffer, sizeof(buffer))) > 0)
-	{
-		if (write(fd_to, buffer, n) != n)
-		{
-			dprintf(2, "Error: Can't write to file %s\n", argv[2]);
-			exit(99);
-		}
-	}
-
-	if (n < 0)
-	{
-		dprintf(2, "Error: Can't read from file %s\n", argv[1]);
-		exit(98);
-	}
+	copy_file(fd_from, fd_to);
 
 	if (close(fd_from) < 0 || close(fd_to) < 0)
 	{
-		dprintf(2, "Error: Can't close files\n");
+		print_error("Can't close files");
 		exit(100);
 	}
 
