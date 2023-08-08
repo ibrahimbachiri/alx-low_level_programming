@@ -1,54 +1,105 @@
-#include <stdlib.h>
-#include <elf.h>
 #include <stdio.h>
-/**
- * main - Prints out the ELF header information from a file.
- *
- * @argc: The number of command-line arguments.
- * @argv: The command-line arguments.
- *
- * Return: Always 0.
- */
-int main(int argc, char *argv[])
-{
-        FILE *fp;
-        Elf32_Ehdr elf_hdr;
+#include <stdlib.h>
+#include <fcntl.h>
+#include <unistd.h>
+#include <sys/types.h>
+#include <sys/stat.h>
 
-        /* Check the number of arguments. */
-        if (argc != 2)
-        {
-                fprintf(stderr, "Usage: %s elf_file\n", argv[0]);
-                exit(EXIT_FAILURE);
-        }
+#define EI_NIDENT 16
+#define ELFCLASSNONE 0
+#define ELFCLASS32 1
+#define ELFCLASS64 2
+#define ELFDATANONE 0
+#define ELFDATA2LSB 1
+#define ELFDATA2MSB 2
+#define EI_CLASS 4
+#define EI_DATA 5
+#define EI_VERSION 6
+#define EI_OSABI 7
+#define EI_ABIVERSION 8
 
-        /* Open the file. */
-        fp = fopen(argv[1], "rb");
-        if (fp == NULL)
-        {
-                fprintf(stderr, "Could not open file %s\n", argv[1]);
-                exit(EXIT_FAILURE);
-        }
+typedef struct {
+    unsigned char e_ident[EI_NIDENT];
+    unsigned short e_type;
+    unsigned short e_machine;
+    unsigned long e_version;
+    unsigned long e_entry;
+    unsigned long e_phoff;
+    unsigned long e_shoff;
+    unsigned long e_flags;
+    unsigned short e_ehsize;
+    unsigned short e_phentsize;
+    unsigned short e_phnum;
+    unsigned short e_shentsize;
+    unsigned short e_shnum;
+    unsigned short e_shstrndx;
+} Elf64_Ehdr;
 
-        /* Read the ELF header. */
-        if (fread(&elf_hdr, sizeof(elf_hdr), 1, fp) != 1)
-        {
-                fprintf(stderr, "Could not read ELF header from file %s\n", argv[1]);
-                exit(EXIT_FAILURE);
-        }
+void print_elf_header(const char *filename);
 
-        /* Print out the ELF header information. */
-        printf("ELF Header:\n");
-        printf("  Magic:      0x%08x\n", elf_hdr.e_ident[EI_MAG0]);
-        printf("  Class:      %d\n", elf_hdr.e_ident[EI_CLASS]);
-        printf("  Data:       %d\n", elf_hdr.e_ident[EI_DATA]);
-        printf("  Version:    %d\n", elf_hdr.e_ident[EI_VERSION]);
-        printf("  OS/ABI:     %d\n", elf_hdr.e_ident[EI_OSABI]);
-        printf("  ABI Version: %d\n", elf_hdr.e_version);
-        printf("  Type:       %d\n", elf_hdr.e_type);
-        printf("  Entry point: 0x%08x\n", elf_hdr.e_entry);
+int main(int argc, char *argv[]) {
+    if (argc != 2) {
+        fprintf(stderr, "Usage: %s <elf-file>\n", argv[0]);
+        return 1;
+    }
 
-        /* Close the file. */
-        fclose(fp);
+    print_elf_header(argv[1]);
 
-        return (EXIT_SUCCESS);
+    return 0;
+}
+
+void print_elf_header(const char *filename) {
+    int fd, i;
+    ssize_t bytes_read;
+    Elf64_Ehdr header;
+
+    fd = open(filename, O_RDONLY);
+    if (fd == -1) {
+        perror("Error opening file");
+        exit(1);
+    }
+
+    bytes_read = read(fd, &header, sizeof(header));
+    if (bytes_read != sizeof(header)) {
+        perror("Error reading file");
+        close(fd);
+        exit(1);
+    }
+
+    /* Print ELF header information */
+    printf("ELF Header:\n");
+    printf("  Magic:   ");
+    for (i = 0; i < EI_NIDENT; i++) {
+        printf("%02x ", header.e_ident[i]);
+    }
+    printf("\n");
+
+    printf("  Class:                             ");
+    switch (header.e_ident[EI_CLASS]) {
+        case ELFCLASSNONE: printf("none\n"); break;
+        case ELFCLASS32:   printf("ELF32\n"); break;
+        case ELFCLASS64:   printf("ELF64\n"); break;
+        default:           printf("<unknown: %x>\n", header.e_ident[EI_CLASS]);
+    }
+
+    printf("  Data:                              ");
+    switch (header.e_ident[EI_DATA]) {
+        case ELFDATANONE: printf("none\n"); break;
+        case ELFDATA2LSB: printf("2's complement, little endian\n"); break;
+        case ELFDATA2MSB: printf("2's complement, big endian\n"); break;
+        default:          printf("<unknown: %x>\n", header.e_ident[EI_DATA]);
+    }
+
+    printf("  Version:                           %d\n", header.e_ident[EI_VERSION]);
+
+    printf("  OS/ABI:                            ");
+    switch (header.e_ident[EI_OSABI]) {
+        /* ... (other cases for OS/ABI) */
+    }
+
+    printf("  ABI Version:                       %d\n", header.e_ident[EI_ABIVERSION]);
+
+    /* ... (similar print functions for other fields) */
+
+    close(fd);
 }
