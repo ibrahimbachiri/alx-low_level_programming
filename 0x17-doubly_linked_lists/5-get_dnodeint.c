@@ -5,7 +5,7 @@
  * @head: A pointer to the head of the dlistint_t list.
  * @index: The index of the node to return, starting from 0.
  *
- * Return: If the node does not exist, return NULL. Otherwise, return the nth node.
+ * Return: If the node does not exist, return.
  */
 dlistint_t *get_dnodeint_at_index(dlistint_t *head, unsigned int index)
 {
@@ -19,5 +19,6 @@ dlistint_t *get_dnodeint_at_index(dlistint_t *head, unsigned int index)
 	count++;
 	current = current->next;
 	}
-	return (NULL); /* Node at the given index doesn't exist */
+
+	return (NULL);
 }
