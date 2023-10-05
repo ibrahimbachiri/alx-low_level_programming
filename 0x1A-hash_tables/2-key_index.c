@@ -1,3 +1,4 @@
+#include "stdio.h"
 #include "hash_tables.h"
 
 /**
@@ -10,11 +11,7 @@
  */
 unsigned long int key_index(const unsigned char *key, unsigned long int size)
 {
-  unsigned long int hash_value;
-
-  /* Use the hash_djb2 function to calculate the hash value */
-  hash_value = hash_djb2(key);
-
-  /* Return the computed index by taking the modulo of the hash value with the size */
-  return (hash_value % size);
+	unsigned long int hash_value;
+	hash_value = hash_djb2(key);
+	return (hash_value % size);
 }
