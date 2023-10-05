@@ -1,3 +1,5 @@
+#include <stdio.h>
+#include "hash_tables.h"
 /**
  * hash_djb2 - Hash function using the DJB2 algorithm
  * @str: The string to hash
