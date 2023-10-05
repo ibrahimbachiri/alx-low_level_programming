@@ -6,13 +6,12 @@
  */
 unsigned long int hash_djb2(const unsigned char *str)
 {
-  unsigned long int hash;
-  int c;
-
-  hash = 5381; /* Initialize hash to a constant value */
-  while ((c = *str++)) /* Loop through each character in the string */
-    {
-      hash = ((hash << 5) + hash) + c; /* Update the hash value */
-    }
-  return (hash);
+	unsigned long int hash;
+	int c;
+	hash = 5381;
+	while ((c = *str++))
+	{
+		hash = ((hash << 5) + hash) + c;
+	}
+	return (hash);
 }
