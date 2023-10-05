@@ -1,4 +1,7 @@
 #include "hash_tables.h"
+#include <stdlib.h>
+#include <string.h>
+#include <stdio.h>
 
 /**
  * shash_table_create - Creates a sorted hash table
