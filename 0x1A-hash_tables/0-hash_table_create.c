@@ -6,7 +6,6 @@
  *
  * Return: A pointer to the newly created hash table.
  */
-
 hash_table_t *hash_table_create(unsigned long int size)
 {
 	hash_table_t *new_table;
@@ -30,5 +29,6 @@ hash_table_t *hash_table_create(unsigned long int size)
 	}
 	for (i = 0; i < size; i++)
 	new_table->array[i] = NULL;
+	
 	return (new_table);
 }
